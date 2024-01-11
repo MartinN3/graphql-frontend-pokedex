@@ -1,5 +1,6 @@
-import { gql } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { NetworkStatus, gql } from '@apollo/client';
+import debounce from 'lodash.debounce';
+import { useEffect, useRef } from 'react';
 
 import { useGetFuzzyPokemonLazyQuery } from '../../__generated__/graphql';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
@@ -24,40 +25,53 @@ const GET_FUZZY_POKEMON = gql`
 `;
 
 export default function Index() {
-  const [searchValue, setSearchValue] = useState('');
-  const [searchPokemons, { loading, error, data }] =
+  const [searchPokemons, { error, data, networkStatus }] =
     useGetFuzzyPokemonLazyQuery();
 
-  // TODO could implement debounce
+  const abortController = useRef(new window.AbortController());
+  const debouncedSearch = useRef(
+    debounce((value: string) => {
+      const controller = new window.AbortController();
+      abortController.current = controller;
+
+      searchPokemons({
+        variables: {
+          pokemon: value,
+          take: 4,
+        },
+        context: {
+          fetchOptions: {
+            signal: abortController.current.signal,
+          },
+        },
+      });
+    }, 200),
+  );
+
+  const abortLatest = () => abortController.current.abort();
+
   useEffect(() => {
-    if (!searchValue) return;
-
-    searchPokemons({
-      variables: {
-        pokemon: searchValue,
-        take: 4,
-      },
-    });
-  }, [searchPokemons, searchValue]);
-
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+    return () => abortLatest();
+  }, []);
 
   return (
     <div className="container px-4 mx-auto">
       <input
         className="py-4 px-4 relative border border-yellow-500 w-full"
         placeholder="Search"
-        value={searchValue}
         autoFocus
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={(e) => {
+          abortLatest();
+          debouncedSearch.current(e.target.value);
+        }}
       />
+      {!data && error && <div>Error! ${error.message}</div>}
+      {networkStatus === NetworkStatus.setVariables && <div>Loading</div>}
 
       <div className="pokemon-cards-grid my-5 lg:my-20">
-        {searchValue &&
-          data?.getFuzzyPokemon.map((item) => (
-            <PokemonCard pokemon={item} key={item.key} />
-          ))}
+        {data?.getFuzzyPokemon.map((item) => (
+          <PokemonCard pokemon={item} key={item.key} />
+        ))}
       </div>
     </div>
   );

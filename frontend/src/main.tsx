@@ -63,6 +63,14 @@ const client = new ApolloClient({
       },
       Pokemon: {
         keyFields: ['key'],
+        // @ts-expect-error TODO type client only somehow
+        isInFavorites: {
+          // @ts-expect-error TODO type args somehow
+          read(_, { variables }) {
+            // The read function for the isInCart field
+            return localStorage?.getItem('FAVORITES')?.includes(variables.key);
+          },
+        },
       },
     },
   }),
