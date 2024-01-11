@@ -5,11 +5,16 @@ const config: CodegenConfig = {
     // eslint-disable-next-line no-undef
     process.env.VITE_GQL_URL ?? '',
   ],
-  documents: ['src/**/*.tsx'],
+  documents: ['src/**/*{.tsx,ts}'],
   overwrite: true,
   generates: {
     './src/__generated__/graphql.ts': {
       plugins: [
+        {
+          add: {
+            content: '/* eslint-disable @typescript-eslint/no-explicit-any */',
+          },
+        },
         'typescript',
         'typescript-operations',
         'typescript-react-apollo',
@@ -29,6 +34,9 @@ const config: CodegenConfig = {
         maybeValue: 'T',
       },
     },
+  },
+  hooks: {
+    afterAllFileWrite: ['prettier --write'],
   },
 };
 

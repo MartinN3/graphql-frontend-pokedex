@@ -11,10 +11,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import Header from './Header.tsx';
-import { indexRoute } from './Index/route.ts';
-import { productsRoute } from './ProductList/route.ts';
-import { PRODUCTS_PER_PAGE } from './constants.ts';
 import './main.css';
+import { indexRoute } from './pages/Index/route.ts';
+import { productRoute } from './pages/Product/route.ts';
+import { PRODUCTS_PER_PAGE } from './pages/ProductList/constants.ts';
+import { productsRoute } from './pages/ProductList/route.ts';
 
 // TODO decompose router to configs
 export const rootRoute = new RootRoute({
@@ -27,9 +28,15 @@ export const rootRoute = new RootRoute({
   ),
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, productsRoute]);
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  productsRoute,
+  productRoute,
+]);
 
-const router = new Router({ routeTree });
+const router = new Router({
+  routeTree,
+});
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -46,7 +53,7 @@ const client = new ApolloClient({
         fields: {
           getAllPokemon: {
             ...offsetLimitPagination(),
-            keyArgs: ['order'],
+            keyArgs: ['reverse'],
             // @ts-expect-error TODO type args somehow
             read(existing, { args: { offset, limit = PRODUCTS_PER_PAGE } }) {
               return existing && existing.slice(offset, offset + limit);
@@ -54,11 +61,13 @@ const client = new ApolloClient({
           },
         },
       },
+      Pokemon: {
+        keyFields: ['key'],
+      },
     },
   }),
   name: 'graphql-pokemon-client',
   version: '1.0',
-  queryDeduplication: false,
   connectToDevTools: true,
 });
 
