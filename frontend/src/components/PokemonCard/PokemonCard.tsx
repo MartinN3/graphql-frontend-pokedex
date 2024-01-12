@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 
 import { Pokemon } from '../../__generated__/graphql';
 import ImagePlaceholder from '../../assets/International_Pokemon_logo.svg';
+import { productRoute } from '../../pages/Product/route';
 import StatBar from './StatBar';
 
 type PokemonCardProps = {
@@ -18,17 +19,21 @@ export default function PokemonCard(props: PokemonCardProps) {
   return (
     <Link
       className="block border-[15px] border-yellow-500 rounded-2xl w-full h-full"
-      to={'/pokemon/$pokemon'}
+      to={productRoute.to}
       params={{
         pokemon: d.key,
       }}
       search={false}
     >
-      <div className="h-40 mb-8">
+      <div className="h-40 mb-8 px-4">
         {d?.sprite ? (
           <img
-            className="block h-full object-cover mx-auto mt-2"
+            className="block h-full object-contain mx-auto mt-2"
             src={d.sprite}
+            onError={(e) => {
+              // @ts-expect-error type event target image
+              e.target.src = ImagePlaceholder;
+            }}
           />
         ) : (
           <div className="flex items-center justify-center rounded h-full px-6">

@@ -47,16 +47,25 @@ declare module '@tanstack/react-router' {
 // TODO decompose to configs
 const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_URL,
+  defaultOptions: {
+    query: {
+      notifyOnNetworkStatusChange: true,
+    },
+  },
   cache: new InMemoryCache({
+    canonizeResults: true,
     typePolicies: {
       Query: {
         fields: {
           getAllPokemon: {
-            ...offsetLimitPagination(),
-            keyArgs: ['reverse'],
+            ...offsetLimitPagination(['reverse']),
             // @ts-expect-error TODO type args somehow
             read(existing, { args: { offset, limit = PRODUCTS_PER_PAGE } }) {
-              return existing && existing.slice(offset, offset + limit);
+              const resultArray =
+                existing && existing.slice(offset, offset + limit);
+              return resultArray?.filter(Boolean).length
+                ? resultArray
+                : undefined;
             },
           },
         },

@@ -39,7 +39,7 @@ export default function Index() {
 
   return (
     <div className="container px-4 mx-auto">
-      <div className="text-xl">Search with debounce and abort</div>
+      <div className="text-lg">Search with debounce and abort</div>
       <input
         className="py-4 px-4 relative border border-yellow-500 w-full"
         placeholder="Search"

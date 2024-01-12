@@ -27,7 +27,7 @@ export default function Main() {
         Evolves from:{' '}
         {d?.preevolutions?.map((pokemon) => (
           <Link
-            to={'/pokemon/$pokemon'}
+            to={productRoute.to}
             params={{ pokemon: pokemon.key }}
             key={pokemon.key}
           >
@@ -39,7 +39,7 @@ export default function Main() {
         Evolves to:{' '}
         {d?.evolutions?.map((pokemon) => (
           <Link
-            to={'/pokemon/$pokemon'}
+            to={productRoute.to}
             params={{ pokemon: pokemon.key }}
             key={pokemon.key}
           >

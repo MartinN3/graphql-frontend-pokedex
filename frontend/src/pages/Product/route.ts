@@ -11,7 +11,7 @@ const productParamsSchema = z.object({
 
 export const productRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/pokemon/$pokemon',
+  path: 'pokemon/$pokemon',
   component: Main,
   parseParams: (params) => {
     const parsedParams = productParamsSchema.safeParse({

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useGetPaginatedPokemonQuery } from '../../../__generated__/graphql.ts';
 import { PRODUCTS_PER_PAGE } from '../constants.ts';
@@ -36,7 +36,7 @@ export default function ProductList() {
     [searchParams.page],
   );
 
-  const { error, data, fetchMore } = useGetPaginatedPokemonQuery({
+  const { data } = useGetPaginatedPokemonQuery({
     variables: {
       offset,
       limit: PRODUCTS_PER_PAGE,
@@ -44,26 +44,14 @@ export default function ProductList() {
     },
   });
 
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        offset,
-        limit: PRODUCTS_PER_PAGE,
-        reverse: searchParams.order === 'ascending',
-      },
-    });
-  }, [fetchMore, offset, searchParams.order]);
-
-  if (error) return `Error! ${error.message}`;
-
   return (
-    <div className="pokemon-cards-grid my-5 lg:my-20">
-      {[...Array(PRODUCTS_PER_PAGE).keys()].map((_, i) => (
-        <Product
-          data={data?.getAllPokemon[i]}
-          key={data?.getAllPokemon[i]?.key ?? i}
-        />
-      ))}
+    <div>
+      <div className="text-xl">List with animations, cache merge and abort</div>
+      <div className="pokemon-cards-grid my-5 lg:my-20">
+        {[...Array(PRODUCTS_PER_PAGE).keys()].map((_, i) => (
+          <Product data={data?.getAllPokemon[i]} key={i} />
+        ))}
+      </div>
     </div>
   );
 }

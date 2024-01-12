@@ -10,7 +10,7 @@ const searchSearchSchema = z.object({
 
 export const indexRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: 'search',
   component: Main,
   validateSearch: searchSearchSchema,
 });
