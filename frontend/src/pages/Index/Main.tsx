@@ -1,9 +1,10 @@
-import { NetworkStatus, gql } from '@apollo/client';
-import debounce from 'lodash.debounce';
-import { useEffect, useRef } from 'react';
+import { gql } from '@apollo/client';
+import { useNavigate } from '@tanstack/react-router';
 
-import { useGetFuzzyPokemonLazyQuery } from '../../__generated__/graphql';
+import { useGetFuzzyPokemonQuery } from '../../__generated__/graphql';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import { useDebounce } from '../../hooks/useDebounce';
+import { indexRoute } from './route';
 
 // @ts-expect-error TODO move to .graphql? no-unused-vars
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,48 +26,33 @@ const GET_FUZZY_POKEMON = gql`
 `;
 
 export default function Index() {
-  const [searchPokemons, { error, data, networkStatus }] =
-    useGetFuzzyPokemonLazyQuery();
-
-  const abortController = useRef(new window.AbortController());
-  const debouncedSearch = useRef(
-    debounce((value: string) => {
-      const controller = new window.AbortController();
-      abortController.current = controller;
-
-      searchPokemons({
-        variables: {
-          pokemon: value,
-          take: 4,
-        },
-        context: {
-          fetchOptions: {
-            signal: abortController.current.signal,
-          },
-        },
-      });
-    }, 200),
-  );
-
-  const abortLatest = () => abortController.current.abort();
-
-  useEffect(() => {
-    return () => abortLatest();
-  }, []);
+  const navigate = useNavigate({ from: indexRoute.fullPath });
+  const searchParams = indexRoute.useSearch();
+  const debouncedSearch = useDebounce(searchParams.search, 250);
+  const { error, data, loading } = useGetFuzzyPokemonQuery({
+    skip: !debouncedSearch,
+    variables: {
+      pokemon: debouncedSearch ?? '',
+      take: 4,
+    },
+  });
 
   return (
     <div className="container px-4 mx-auto">
+      <div className="text-xl">Search with debounce and abort</div>
       <input
         className="py-4 px-4 relative border border-yellow-500 w-full"
         placeholder="Search"
+        value={searchParams.search ?? ''}
         autoFocus
         onChange={(e) => {
-          abortLatest();
-          debouncedSearch.current(e.target.value);
+          navigate({
+            search: (prev) => ({ ...prev, search: e.target.value }),
+          });
         }}
       />
       {!data && error && <div>Error! ${error.message}</div>}
-      {networkStatus === NetworkStatus.setVariables && <div>Loading</div>}
+      {loading && <div>Loading</div>}
 
       <div className="pokemon-cards-grid my-5 lg:my-20">
         {data?.getFuzzyPokemon.map((item) => (

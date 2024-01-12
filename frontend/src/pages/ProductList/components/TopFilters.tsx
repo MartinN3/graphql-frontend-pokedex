@@ -20,6 +20,7 @@ export default function TopFilters() {
           value={order}
           onChange={(e) => {
             navigate({
+              // @ts-expect-error casting e.target value to enum
               search: (prev) => ({
                 ...prev,
                 order: e.target.value,

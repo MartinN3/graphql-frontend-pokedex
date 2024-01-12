@@ -4,7 +4,7 @@ import { productsRoute } from '../route';
 
 export default function PaginationNavigation() {
   const { page } = useSearch({
-    from: productsRoute.id,
+    from: productsRoute.fullPath,
   });
 
   return (
@@ -12,12 +12,11 @@ export default function PaginationNavigation() {
       <li>
         <Link
           className="flex w-9 h-9 items-center justify-center border border-yellow-500 text-sky-700 hover:text-sky-400"
-          from={productsRoute.id}
+          from={productsRoute.fullPath}
           search={(prev) => ({
             ...prev,
             page: prev.page > 1 ? prev.page - 1 : prev.page,
           })}
-          resetScroll={false}
         >
           <svg
             width={7}
@@ -44,9 +43,8 @@ export default function PaginationNavigation() {
       <li>
         <Link
           className="flex w-9 h-9 items-center justify-center border border-yellow-500 text-sky-700 hover:text-sky-400"
-          from={productsRoute.id}
+          from={productsRoute.fullPath}
           search={(prev) => ({ ...prev, page: prev.page + 1 })}
-          resetScroll={false}
         >
           <svg
             width="7"

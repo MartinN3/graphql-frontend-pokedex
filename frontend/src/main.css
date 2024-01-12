@@ -20,5 +20,5 @@
 }
 
 .pokemon-cards-grid {
-  @apply grid grid-cols-pokemoncard justify-center gap-4;
+  @apply grid grid-cols-pokemoncard justify-center gap-8;
 }
