@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 
 import { useGetPokemonQuery } from '../../__generated__/graphql';
+import ImagePlaceholder from '../../assets/International_Pokemon_logo.svg';
 import { productRoute } from './route';
 
 export default function Main() {
@@ -18,6 +19,20 @@ export default function Main() {
 
   return (
     <div className="container px-4 mx-auto">
+      {d?.sprite ? (
+        <img
+          className="block h-full object-contain mx-auto mt-2"
+          src={d.sprite}
+          onError={(e) => {
+            // @ts-expect-error type event target image
+            e.target.src = ImagePlaceholder;
+          }}
+        />
+      ) : (
+        <div className="flex items-center justify-center rounded h-full px-6">
+          <ImagePlaceholder />
+        </div>
+      )}
       <div className="uppercase text-2xl">{d?.species}</div>
       <div>{d?.evolutionLevel} Pokémon</div>
       <div>

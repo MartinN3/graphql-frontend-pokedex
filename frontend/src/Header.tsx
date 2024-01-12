@@ -14,6 +14,23 @@ export default function Header() {
         <ul className="flex w-auto space-x-12 ml-auto">
           <li>
             <Link
+              to={indexRoute.to}
+              className="inline-flex items-center font-medium"
+              inactiveProps={{
+                className: 'text-sky-700',
+              }}
+              activeProps={{
+                className: 'text-yellow-500',
+              }}
+              activeOptions={{
+                includeSearch: false,
+              }}
+            >
+              <span className="ml-3">Search</span>
+            </Link>
+          </li>
+          <li>
+            <Link
               to={productsRoute.to}
               className="inline-flex items-center font-medium"
               search={{ page: 1, order: 'ascending' }}
