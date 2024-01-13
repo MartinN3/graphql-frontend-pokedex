@@ -2,20 +2,24 @@ import { Link } from '@tanstack/react-router';
 
 import { Pokemon } from '../../__generated__/graphql';
 import ImagePlaceholder from '../../assets/International_Pokemon_logo.svg';
+import { favoritePokemonVar } from '../../main';
 import { productRoute } from '../../pages/Product/route';
 import StatBar from './StatBar';
 
 type PokemonCardProps = {
-  pokemon: Pick<Pokemon, 'key' | 'sprite' | 'weight' | 'species'> & {
+  pokemon: Pick<
+    Pokemon,
+    'key' | 'sprite' | 'weight' | 'species' | 'isInFavorites'
+  > & {
     baseStats: Pick<
       Pokemon['baseStats'],
       'attack' | 'defense' | 'hp' | 'speed'
     >;
   };
 };
+
 export default function PokemonCard(props: PokemonCardProps) {
   const d = props.pokemon;
-
   return (
     <Link
       className="block border-[15px] border-yellow-500 rounded-2xl w-full h-full"
@@ -48,6 +52,13 @@ export default function PokemonCard(props: PokemonCardProps) {
         <h6 className="font-bold text-sky-700 mt-2 mb-5 uppercase">
           {d?.species}
         </h6>
+        <div
+          onClick={() => {
+            favoritePokemonVar([...favoritePokemonVar(), d.key]);
+          }}
+        >
+          {d.isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+        </div>
         <div className="mb-1">
           <StatBar stat="attack" value={d.baseStats.attack} />
           <StatBar stat="defense" value={d.baseStats.defense} />

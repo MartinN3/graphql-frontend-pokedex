@@ -1,0 +1,7 @@
+extend type Pokemon {
+  isInFavorites: Boolean
+}
+
+extend type Query {
+  getAllFavoritePokemon: [String!]!
+}

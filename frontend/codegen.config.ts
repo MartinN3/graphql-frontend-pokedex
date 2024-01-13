@@ -4,6 +4,7 @@ const config: CodegenConfig = {
   schema: [
     // eslint-disable-next-line no-undef
     process.env.VITE_GQL_URL ?? '',
+    './src/client.schema.graphql',
   ],
   documents: ['src/**/*{.tsx,ts}'],
   overwrite: true,

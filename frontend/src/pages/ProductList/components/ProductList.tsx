@@ -11,6 +11,7 @@ import Product from './Product.tsx';
 const GET_POKEMON_LIST = gql`
   query getPaginatedPokemon($offset: Int, $limit: Int, $reverse: Boolean) {
     getAllPokemon(offset: $offset, take: $limit, reverse: $reverse) {
+      isInFavorites @client
       weight
       species
       sprite

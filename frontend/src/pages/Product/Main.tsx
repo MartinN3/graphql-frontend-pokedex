@@ -19,6 +19,9 @@ export default function Main() {
 
   return (
     <div className="container px-4 mx-auto">
+      <div>
+        {d?.isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+      </div>
       {d?.sprite ? (
         <img
           className="block h-full object-contain mx-auto mt-2"

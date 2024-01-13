@@ -1,3 +1,4 @@
+import FavoriteList from './components/FavoriteList';
 import PaginationNavigation from './components/PaginationNavigation';
 import ProductList from './components/ProductList';
 import TopFilters from './components/TopFilters';
@@ -9,6 +10,7 @@ export default function ProductListRoute() {
         <div className="flex flex-wrap -mx-4">
           <div className="flex-grow px-4">
             <TopFilters />
+            <FavoriteList />
             <ProductList />
             <PaginationNavigation />
           </div>

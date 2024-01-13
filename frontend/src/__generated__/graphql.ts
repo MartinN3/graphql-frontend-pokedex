@@ -2368,6 +2368,7 @@ export type Pokemon = {
   height: Scalars['Float']['output'];
   /** Whether the egg of a Pokémon is obtainable */
   isEggObtainable: Scalars['Boolean']['output'];
+  isInFavorites?: Maybe<Scalars['Boolean']['output']>;
   /** The key of the Pokémon as stored in the API */
   key: PokemonEnum;
   /** The learnset for this pokemon */
@@ -3866,6 +3867,7 @@ export type Query = {
   __typename?: 'Query';
   /** Gets the details on a Pokémon ability, using the ability name */
   getAbility: Ability;
+  getAllFavoritePokemon: Array<Scalars['String']['output']>;
   /**
    * Returns a list of all the known Pokémon.
    *
@@ -4140,6 +4142,7 @@ export type GetPokemonQuery = {
   __typename?: 'Query';
   getPokemon: {
     __typename?: 'Pokemon';
+    isInFavorites?: boolean;
     key: PokemonEnum;
     eggGroups?: Array<string>;
     evolutionLevel?: string;
@@ -4169,6 +4172,7 @@ export type GetPokemonQuery = {
     weight: number;
     evolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -4198,6 +4202,7 @@ export type GetPokemonQuery = {
       weight: number;
       evolutions?: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -4239,6 +4244,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -5537,6 +5543,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -6835,6 +6842,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -8133,6 +8141,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -10680,6 +10689,7 @@ export type GetPokemonQuery = {
       }>;
       preevolutions?: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -10721,6 +10731,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -12019,6 +12030,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -13317,6 +13329,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -14615,6 +14628,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -17174,6 +17188,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -18472,6 +18487,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -19770,6 +19786,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -21068,6 +21085,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -23615,6 +23633,7 @@ export type GetPokemonQuery = {
     }>;
     preevolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -23644,6 +23663,7 @@ export type GetPokemonQuery = {
       weight: number;
       evolutions?: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -23685,6 +23705,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -24983,6 +25004,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -26281,6 +26303,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -27579,6 +27602,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -30126,6 +30150,7 @@ export type GetPokemonQuery = {
       }>;
       preevolutions?: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -30167,6 +30192,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -31465,6 +31491,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -32763,6 +32790,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -34061,6 +34089,7 @@ export type GetPokemonQuery = {
             smogonPage: string;
             pokemonThatHaveThisAbility: Array<{
               __typename?: 'Pokemon';
+              isInFavorites?: boolean;
               key: PokemonEnum;
               eggGroups?: Array<string>;
               evolutionLevel?: string;
@@ -36620,6 +36649,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -37918,6 +37948,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -39216,6 +39247,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -40514,6 +40546,7 @@ export type GetPokemonQuery = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -43073,6 +43106,7 @@ export type GetPokemonQuery = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -44371,6 +44405,7 @@ export type GetPokemonQuery = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -45669,6 +45704,7 @@ export type GetPokemonQuery = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -46967,6 +47003,7 @@ export type GetPokemonQuery = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -51013,6 +51050,7 @@ export type AbilitiesFragmentFragment = {
     smogonPage: string;
     pokemonThatHaveThisAbility: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -52311,6 +52349,7 @@ export type AbilitiesFragmentFragment = {
     smogonPage: string;
     pokemonThatHaveThisAbility: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -53609,6 +53648,7 @@ export type AbilitiesFragmentFragment = {
     smogonPage: string;
     pokemonThatHaveThisAbility: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -54907,6 +54947,7 @@ export type AbilitiesFragmentFragment = {
     smogonPage: string;
     pokemonThatHaveThisAbility: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -56207,6 +56248,7 @@ export type AbilityFragmentFragment = {
   smogonPage: string;
   pokemonThatHaveThisAbility: Array<{
     __typename?: 'Pokemon';
+    isInFavorites?: boolean;
     key: PokemonEnum;
     eggGroups?: Array<string>;
     evolutionLevel?: string;
@@ -57556,6 +57598,7 @@ export type CatchRateFragmentFragment = {
 
 export type FullDataFragmentWithoutNestedFragment = {
   __typename?: 'Pokemon';
+  isInFavorites?: boolean;
   key: PokemonEnum;
   eggGroups?: Array<string>;
   evolutionLevel?: string;
@@ -57637,6 +57680,7 @@ export type FullDataFragmentWithoutNestedFragment = {
 
 export type FullDataFragmentFragment = {
   __typename?: 'Pokemon';
+  isInFavorites?: boolean;
   key: PokemonEnum;
   eggGroups?: Array<string>;
   evolutionLevel?: string;
@@ -57678,6 +57722,7 @@ export type FullDataFragmentFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -58976,6 +59021,7 @@ export type FullDataFragmentFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -60274,6 +60320,7 @@ export type FullDataFragmentFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -61572,6 +61619,7 @@ export type FullDataFragmentFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -64116,6 +64164,7 @@ export type FullDataFragmentFragment = {
 
 export type FullDataFragment = {
   __typename?: 'Pokemon';
+  isInFavorites?: boolean;
   key: PokemonEnum;
   eggGroups?: Array<string>;
   evolutionLevel?: string;
@@ -64145,6 +64194,7 @@ export type FullDataFragment = {
   weight: number;
   evolutions?: Array<{
     __typename?: 'Pokemon';
+    isInFavorites?: boolean;
     key: PokemonEnum;
     eggGroups?: Array<string>;
     evolutionLevel?: string;
@@ -64174,6 +64224,7 @@ export type FullDataFragment = {
     weight: number;
     evolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -64215,6 +64266,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -65513,6 +65565,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -66811,6 +66864,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -68109,6 +68163,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -70656,6 +70711,7 @@ export type FullDataFragment = {
     }>;
     preevolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -70697,6 +70753,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -71995,6 +72052,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -73293,6 +73351,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -74591,6 +74650,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -77150,6 +77210,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -78448,6 +78509,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -79746,6 +79808,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -81044,6 +81107,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -83587,6 +83651,7 @@ export type FullDataFragment = {
   }>;
   preevolutions?: Array<{
     __typename?: 'Pokemon';
+    isInFavorites?: boolean;
     key: PokemonEnum;
     eggGroups?: Array<string>;
     evolutionLevel?: string;
@@ -83616,6 +83681,7 @@ export type FullDataFragment = {
     weight: number;
     evolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -83657,6 +83723,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -84955,6 +85022,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -86253,6 +86321,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -87551,6 +87620,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -90098,6 +90168,7 @@ export type FullDataFragment = {
     }>;
     preevolutions?: Array<{
       __typename?: 'Pokemon';
+      isInFavorites?: boolean;
       key: PokemonEnum;
       eggGroups?: Array<string>;
       evolutionLevel?: string;
@@ -90139,6 +90210,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -91437,6 +91509,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -92735,6 +92808,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -94033,6 +94107,7 @@ export type FullDataFragment = {
           smogonPage: string;
           pokemonThatHaveThisAbility: Array<{
             __typename?: 'Pokemon';
+            isInFavorites?: boolean;
             key: PokemonEnum;
             eggGroups?: Array<string>;
             evolutionLevel?: string;
@@ -96592,6 +96667,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -97890,6 +97966,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -99188,6 +99265,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -100486,6 +100564,7 @@ export type FullDataFragment = {
         smogonPage: string;
         pokemonThatHaveThisAbility: Array<{
           __typename?: 'Pokemon';
+          isInFavorites?: boolean;
           key: PokemonEnum;
           eggGroups?: Array<string>;
           evolutionLevel?: string;
@@ -103041,6 +103120,7 @@ export type FullDataFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -104339,6 +104419,7 @@ export type FullDataFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -105637,6 +105718,7 @@ export type FullDataFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -106935,6 +107017,7 @@ export type FullDataFragment = {
       smogonPage: string;
       pokemonThatHaveThisAbility: Array<{
         __typename?: 'Pokemon';
+        isInFavorites?: boolean;
         key: PokemonEnum;
         eggGroups?: Array<string>;
         evolutionLevel?: string;
@@ -109487,6 +109570,7 @@ export type GetPaginatedPokemonQuery = {
   __typename?: 'Query';
   getAllPokemon: Array<{
     __typename?: 'Pokemon';
+    isInFavorites?: boolean;
     weight: number;
     species: string;
     sprite: string;
@@ -109566,6 +109650,7 @@ export const CatchRateFragmentFragmentDoc = gql`
 `;
 export const FullDataFragmentWithoutNestedFragmentDoc = gql`
   fragment FullDataFragmentWithoutNested on Pokemon {
+    isInFavorites @client
     key
     eggGroups
     evYields {
@@ -109959,6 +110044,7 @@ export type GetPokemonQueryResult = Apollo.QueryResult<
 export const GetPaginatedPokemonDocument = gql`
   query getPaginatedPokemon($offset: Int, $limit: Int, $reverse: Boolean) {
     getAllPokemon(offset: $offset, take: $limit, reverse: $reverse) {
+      isInFavorites @client
       weight
       species
       sprite
@@ -110283,6 +110369,7 @@ export type PokemonKeySpecifier = (
   | 'gender'
   | 'height'
   | 'isEggObtainable'
+  | 'isInFavorites'
   | 'key'
   | 'learnsets'
   | 'legendary'
@@ -110325,6 +110412,7 @@ export type PokemonFieldPolicy = {
   gender?: FieldPolicy<any> | FieldReadFunction<any>;
   height?: FieldPolicy<any> | FieldReadFunction<any>;
   isEggObtainable?: FieldPolicy<any> | FieldReadFunction<any>;
+  isInFavorites?: FieldPolicy<any> | FieldReadFunction<any>;
   key?: FieldPolicy<any> | FieldReadFunction<any>;
   learnsets?: FieldPolicy<any> | FieldReadFunction<any>;
   legendary?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -110375,6 +110463,7 @@ export type PokemonTypeFieldPolicy = {
 };
 export type QueryKeySpecifier = (
   | 'getAbility'
+  | 'getAllFavoritePokemon'
   | 'getAllPokemon'
   | 'getFuzzyAbility'
   | 'getFuzzyItem'
@@ -110391,6 +110480,7 @@ export type QueryKeySpecifier = (
 )[];
 export type QueryFieldPolicy = {
   getAbility?: FieldPolicy<any> | FieldReadFunction<any>;
+  getAllFavoritePokemon?: FieldPolicy<any> | FieldReadFunction<any>;
   getAllPokemon?: FieldPolicy<any> | FieldReadFunction<any>;
   getFuzzyAbility?: FieldPolicy<any> | FieldReadFunction<any>;
   getFuzzyItem?: FieldPolicy<any> | FieldReadFunction<any>;
