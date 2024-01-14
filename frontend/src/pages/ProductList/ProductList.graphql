@@ -1,18 +1,3 @@
-fragment PokemonCard on Pokemon {
-  key
-  weight
-  species
-  sprite
-  baseStats {
-    attack
-    defense
-    hp
-    speed
-    specialattack
-    specialdefense
-  }
-}
-
 query getPaginatedPokemonCard($offset: Int, $limit: Int, $reverse: Boolean) {
   getAllPokemon(offset: $offset, take: $limit, reverse: $reverse) {
     ...PokemonCard

@@ -1,0 +1,12 @@
+fragment PokemonCard on Pokemon {
+  key
+  weight
+  species
+  sprite
+  baseStats {
+    attack
+    defense
+    hp
+    speed
+  }
+}

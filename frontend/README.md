@@ -1,8 +1,10 @@
 # React + Tanstack Query + Apollo React Client + Graphql Codegen + TypeScript + Vite Pokemon example
 
-App is made to minimalize unnecessary data fetching.
+App is made to minimalize unnecessary data fetching and UI jumping.
 
-Some of the features can be better visible on Slow 3g network emulation.
+Some of the features can be better visible on:
+fast 3g network emulation
+apollo cache debug tool
 
 I have used useQuery where possible to reflect on setting of searchParams etc.
-Im using native AbortController so no unnecessary code.
+Using native AbortController to abort fetches.

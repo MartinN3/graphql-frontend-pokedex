@@ -4106,6 +4106,21 @@ export enum TypesEnum {
   Water = 'water',
 }
 
+export type PokemonCardFragment = {
+  __typename?: 'Pokemon';
+  key: PokemonEnum;
+  weight: number;
+  species: string;
+  sprite: string;
+  baseStats: {
+    __typename?: 'Stats';
+    attack: number;
+    defense: number;
+    hp: number;
+    speed: number;
+  };
+};
+
 export type GetFuzzyPokemonQueryVariables = Exact<{
   pokemon: Scalars['String']['input'];
   take?: InputMaybe<Scalars['Int']['input']>;
@@ -4115,10 +4130,10 @@ export type GetFuzzyPokemonQuery = {
   __typename?: 'Query';
   getFuzzyPokemon: Array<{
     __typename?: 'Pokemon';
+    key: PokemonEnum;
     weight: number;
     species: string;
     sprite: string;
-    key: PokemonEnum;
     baseStats: {
       __typename?: 'Stats';
       attack: number;
@@ -109477,23 +109492,6 @@ export type FullDataFragment = {
   };
 };
 
-export type PokemonCardFragment = {
-  __typename?: 'Pokemon';
-  key: PokemonEnum;
-  weight: number;
-  species: string;
-  sprite: string;
-  baseStats: {
-    __typename?: 'Stats';
-    attack: number;
-    defense: number;
-    hp: number;
-    speed: number;
-    specialattack: number;
-    specialdefense: number;
-  };
-};
-
 export type GetPaginatedPokemonCardQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -109514,8 +109512,6 @@ export type GetPaginatedPokemonCardQuery = {
       defense: number;
       hp: number;
       speed: number;
-      specialattack: number;
-      specialdefense: number;
     };
   }>;
 };
@@ -109541,12 +109537,24 @@ export type GetPokemonCardQuery = {
       defense: number;
       hp: number;
       speed: number;
-      specialattack: number;
-      specialdefense: number;
     };
   };
 };
 
+export const PokemonCardFragmentDoc = gql`
+  fragment PokemonCard on Pokemon {
+    key
+    weight
+    species
+    sprite
+    baseStats {
+      attack
+      defense
+      hp
+      speed
+    }
+  }
+`;
 export const EvYieldsFragmentFragmentDoc = gql`
   fragment EvYieldsFragment on EvYields {
     hp
@@ -109832,37 +109840,13 @@ export const FullDataFragmentDoc = gql`
   }
   ${FullDataFragmentFragmentDoc}
 `;
-export const PokemonCardFragmentDoc = gql`
-  fragment PokemonCard on Pokemon {
-    key
-    weight
-    species
-    sprite
-    baseStats {
-      attack
-      defense
-      hp
-      speed
-      specialattack
-      specialdefense
-    }
-  }
-`;
 export const GetFuzzyPokemonDocument = gql`
-  query GetFuzzyPokemon($pokemon: String!, $take: Int) {
+  query getFuzzyPokemon($pokemon: String!, $take: Int) {
     getFuzzyPokemon(pokemon: $pokemon, take: $take) {
-      weight
-      species
-      sprite
-      key
-      baseStats {
-        attack
-        defense
-        hp
-        speed
-      }
+      ...PokemonCard
     }
   }
+  ${PokemonCardFragmentDoc}
 `;
 
 /**

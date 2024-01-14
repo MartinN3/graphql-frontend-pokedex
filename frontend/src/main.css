@@ -2,23 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.flipcard-wrapper {
-  @apply h-[415px] perspective-1000;
-}
-
-.flipcard-inner {
-  @apply relative w-full h-full transform-style-3d shadow-2xl bg-transparent rounded-2xl;
-}
-
-.flipcard-front {
-  @apply rotate-y-180;
-}
-
-.flipcard-front,
-.flipcard-back {
-  @apply absolute w-full h-full backface-hidden;
-}
-
 .pokemon-cards-grid {
   @apply grid grid-cols-pokemoncard justify-center gap-8;
 }
