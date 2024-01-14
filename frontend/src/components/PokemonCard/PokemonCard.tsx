@@ -1,3 +1,4 @@
+import { useReactiveVar } from '@apollo/client';
 import { Link } from '@tanstack/react-router';
 
 import { Pokemon } from '../../__generated__/graphql';
@@ -7,10 +8,7 @@ import { productRoute } from '../../pages/Product/route';
 import StatBar from './StatBar';
 
 type PokemonCardProps = {
-  pokemon: Pick<
-    Pokemon,
-    'key' | 'sprite' | 'weight' | 'species' | 'isInFavorites'
-  > & {
+  pokemon: Pick<Pokemon, 'key' | 'sprite' | 'weight' | 'species'> & {
     baseStats: Pick<
       Pokemon['baseStats'],
       'attack' | 'defense' | 'hp' | 'speed'
@@ -19,7 +17,11 @@ type PokemonCardProps = {
 };
 
 export default function PokemonCard(props: PokemonCardProps) {
+  const favoritePokemon = useReactiveVar(favoritePokemonVar);
   const d = props.pokemon;
+
+  const isInFavorites = favoritePokemon.includes(d.key);
+
   return (
     <Link
       className="block border-[15px] border-yellow-500 rounded-2xl w-full h-full"
@@ -53,11 +55,20 @@ export default function PokemonCard(props: PokemonCardProps) {
           {d?.species}
         </h6>
         <div
-          onClick={() => {
-            favoritePokemonVar([...favoritePokemonVar(), d.key]);
+          onClick={(e) => {
+            e.preventDefault();
+            if (isInFavorites) {
+              return favoritePokemonVar(
+                favoritePokemonVar().filter(
+                  (pokemonKey) => pokemonKey !== d.key,
+                ),
+              );
+            }
+
+            return favoritePokemonVar([...favoritePokemonVar(), d.key]);
           }}
         >
-          {d.isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+          {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
         </div>
         <div className="mb-1">
           <StatBar stat="attack" value={d.baseStats.attack} />

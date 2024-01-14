@@ -1,7 +1,1 @@
-extend type Pokemon {
-  isInFavorites: Boolean
-}
-
-extend type Query {
-  getAllFavoritePokemon: [String!]!
-}
+# Apollo doesnt like @client on ProductList isInFavorites so i decided against local schema

@@ -6,7 +6,7 @@ const config: CodegenConfig = {
     process.env.VITE_GQL_URL ?? '',
     './src/client.schema.graphql',
   ],
-  documents: ['src/**/*{.tsx,ts}'],
+  documents: ['src/**/*.{tsx,ts,graphql}'],
   overwrite: true,
   generates: {
     './src/__generated__/graphql.ts': {

@@ -188,7 +188,6 @@ export default gql(`query GetPokemon(
   }
   
   fragment FullDataFragmentWithoutNested on Pokemon {
-    isInFavorites @client
     key
     eggGroups
     evYields {

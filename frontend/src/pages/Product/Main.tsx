@@ -1,7 +1,5 @@
-import { Link } from '@tanstack/react-router';
-
 import { useGetPokemonQuery } from '../../__generated__/graphql';
-import ImagePlaceholder from '../../assets/International_Pokemon_logo.svg';
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import { productRoute } from './route';
 
 export default function Main() {
@@ -18,64 +16,8 @@ export default function Main() {
   const d = data?.getPokemon;
 
   return (
-    <div className="container px-4 mx-auto">
-      <div>
-        {d?.isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
-      </div>
-      {d?.sprite ? (
-        <img
-          className="block h-full object-contain mx-auto mt-2"
-          src={d.sprite}
-          onError={(e) => {
-            // @ts-expect-error type event target image
-            e.target.src = ImagePlaceholder;
-          }}
-        />
-      ) : (
-        <div className="flex items-center justify-center rounded h-full px-6">
-          <ImagePlaceholder />
-        </div>
-      )}
-      <div className="uppercase text-2xl">{d?.species}</div>
-      <div>{d?.evolutionLevel} Pokémon</div>
-      <div>
-        HP <span className="text-2xl">{d?.baseStats.hp}</span>
-      </div>
-      <div>
-        Evolves from:{' '}
-        {d?.preevolutions?.map((pokemon) => (
-          <Link
-            to={productRoute.to}
-            params={{ pokemon: pokemon.key }}
-            key={pokemon.key}
-          >
-            {pokemon.species}
-          </Link>
-        )) ?? 'Nothing'}
-      </div>
-      <div>
-        Evolves to:{' '}
-        {d?.evolutions?.map((pokemon) => (
-          <Link
-            to={productRoute.to}
-            params={{ pokemon: pokemon.key }}
-            key={pokemon.key}
-          >
-            {pokemon.species}
-          </Link>
-        )) ?? 'Nothing'}
-      </div>
-      <div className="text-lg mt-6">Abilities:</div>
-      <div className="my-4">
-        <div>First: {d?.abilities.first.name}</div>
-        <div>{d?.abilities.first.desc}</div>
-      </div>
-      <div className="my-4">
-        <div>Second: {d?.abilities.second?.name ?? 'None'}</div>
-      </div>
-      <div className="my-4">
-        <div>Special: {d?.abilities.special?.name ?? 'None'}</div>
-      </div>
+    <div className="pokemon-cards-grid my-5 lg:my-20 justify-center">
+      {d && <PokemonCard pokemon={d} />}
     </div>
   );
 }

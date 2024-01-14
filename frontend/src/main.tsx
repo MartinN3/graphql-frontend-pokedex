@@ -64,23 +64,10 @@ const typePolicies: StrictTypedTypePolicies = {
           return resultArray?.filter(Boolean).length ? resultArray : undefined;
         },
       },
-      getAllFavoritePokemon: {
-        read() {
-          return favoritePokemonVar();
-        },
-      },
     },
   },
   Pokemon: {
     keyFields: ['key'],
-    fields: {
-      isInFavorites: {
-        read(_, { variables }) {
-          // @ts-expect-error TODO args are not typed
-          return favoritePokemonVar().includes(variables.pokemon);
-        },
-      },
-    },
   },
 };
 

@@ -1,10 +1,10 @@
-import { GetPaginatedPokemonQuery } from '../../../__generated__/graphql';
+import { GetPaginatedPokemonCardQuery } from '../../../__generated__/graphql';
 import PokemonCard from '../../../components/PokemonCard/PokemonCard';
 import Card from '../assets/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-fullview.png';
 
 type ProductProps = {
   // if component was meant to be reusable, i would pick items from Pokemon type
-  data?: GetPaginatedPokemonQuery['getAllPokemon'][0];
+  data?: GetPaginatedPokemonCardQuery['getAllPokemon'][0];
 };
 
 export default function Product(props: ProductProps) {
