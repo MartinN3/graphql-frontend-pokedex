@@ -3,7 +3,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useGetFuzzyPokemonQuery } from '../../__generated__/graphql';
 import PokemonCardWithAnimation from '../../components/PokemonCard/PokemonCardWithAnimation';
 import { useDebounce } from '../../hooks/useDebounce';
-import { PRODUCTS_PER_PAGE } from '../ProductList/constants';
+import { SEARCH_PRODUCTS_PER_PAGE } from './constants';
 import { indexRoute } from './route';
 
 export default function Index() {
@@ -14,7 +14,7 @@ export default function Index() {
     skip: !debouncedSearch,
     variables: {
       pokemon: debouncedSearch ?? '',
-      take: PRODUCTS_PER_PAGE,
+      take: SEARCH_PRODUCTS_PER_PAGE,
     },
   });
 
@@ -35,7 +35,7 @@ export default function Index() {
       {!data && error && <div>Error! ${error.message}</div>}
 
       <div className="pokemon-cards-grid my-5 lg:my-20">
-        {[...Array(PRODUCTS_PER_PAGE).keys()].map((_, i) => (
+        {[...Array(SEARCH_PRODUCTS_PER_PAGE).keys()].map((_, i) => (
           <PokemonCardWithAnimation
             data={data?.getFuzzyPokemon[i] ?? undefined}
             key={i}

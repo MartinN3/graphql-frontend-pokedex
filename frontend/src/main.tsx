@@ -18,6 +18,7 @@ import ReactDOM from 'react-dom/client';
 import Header from './Header.tsx';
 import { Pokemon, StrictTypedTypePolicies } from './__generated__/graphql.ts';
 import './main.css';
+import { favoritesRoute } from './pages/FavoriteList/route.ts';
 import { indexRoute } from './pages/Index/route.ts';
 import { productRoute } from './pages/Product/route.ts';
 import { PRODUCTS_PER_PAGE } from './pages/ProductList/constants.ts';
@@ -38,6 +39,7 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   productsRoute,
   productRoute,
+  favoritesRoute,
 ]);
 
 const router = new Router({

@@ -14,7 +14,7 @@ export type ProductListSearch = z.infer<typeof productSearchSchema>;
 
 export const productsRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: 'pokemon',
+  path: 'pokedex/list',
   component: Main,
   validateSearch: productSearchSchema,
 });
